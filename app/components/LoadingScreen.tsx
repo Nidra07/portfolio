@@ -1,7 +1,7 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "motion/react";
-import { useEffect, useState } from "react";
 
 interface LoadingScreenProps {
   onComplete: () => void;
