@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import LoadingScreen from "./LoadingScreen";
+import LoadingScreen from "@/components/LoadingScreen";
 
 interface ClientLayoutProps {
   children: React.ReactNode;
@@ -16,14 +16,14 @@ export default function ClientLayout({
     <>
       {loading ? (
         <LoadingScreen
-          onComplete={() => setLoading(false)}
+          onComplete={() => {
+            setLoading(false);
+          }}
         />
       ) : (
-        <div
-          className="animate-[fadeContent_.8s_ease]"
-        >
+        <main className="fadeContent">
           {children}
-        </div>
+        </main>
       )}
     </>
   );
