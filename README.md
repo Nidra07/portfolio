@@ -4,7 +4,7 @@
 
 Welcome to my developer portfolio! This project showcases my skills, projects, and experience as a Software Engineer and UI/UX Designer. Built with [Next.js](https://nextjs.org/), [TypeScript](https://www.typescriptlang.org/), and [Tailwind CSS](https://tailwindcss.com). It not only provides a visually appealing representation of my work but also ensures optimal performance. View the [live site](https://portfolio-rudraaksh.vercel.app/).
 
-# Features 🎉
+# Feature 🎉
 
 The whole [portfolio](https://portfolio-rudraaksh.vercel.app/) is a React-based single page app built with Next.js in TypeScript, using only statically generated pages.
 
