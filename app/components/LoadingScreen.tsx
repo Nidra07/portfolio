@@ -13,7 +13,7 @@ export default function LoadingScreen({
   const [progress, setProgress] = useState(0);
   const [text, setText] = useState("");
 
-  const fullText = "Rudraaksh Singh";
+  const fullText = "Rudraaksh";
 
   // Typewriter effect
   useEffect(() => {
@@ -110,7 +110,7 @@ export default function LoadingScreen({
 
       {/* Subtitle */}
       <p className="z-10 mt-2 text-gray-400">
-        Software Engineer • UI/UX Designer • React Native Developer
+        Software Engineer • UI/UX Designer
       </p>
 
       {/* Progress */}
