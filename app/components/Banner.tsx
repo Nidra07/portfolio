@@ -13,6 +13,10 @@ export default function Banner(): React.JSX.Element {
   const [displayedText, setDisplayedText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
   const [typingSpeed, setTypingSpeed] = useState(100);
+const [heroVisible, setHeroVisible] = useState(false);
+const [imageVisible, setImageVisible] = useState(false);
+const [contentVisible, setContentVisible] = useState(false);
+const [showGlow, setShowGlow] = useState(false);
 
   useEffect(() => {
     const currentText = texts[currentTextIndex];
@@ -47,17 +51,42 @@ export default function Banner(): React.JSX.Element {
       }
     }
   }, [displayedText, isDeleting, currentTextIndex, texts, typingSpeed]);
+useEffect(() => {
+  const t1 = setTimeout(() => setHeroVisible(true), 150);
+  const t2 = setTimeout(() => setImageVisible(true), 350);
+  const t3 = setTimeout(() => setContentVisible(true), 600);
+  const t4 = setTimeout(() => setShowGlow(true), 900);
+
+  return () => {
+    clearTimeout(t1);
+    clearTimeout(t2);
+    clearTimeout(t3);
+    clearTimeout(t4);
+  };
+}, []);
   return (
     <section
-      id="home"
-      className="min-h-screen flex items-center justify-center pt-20 px-6"
-    >
+  id="home"
+  className={`hero-section min-h-screen flex items-center justify-center px-6 pt-20 ${
+    heroVisible ? "hero-visible" : ""
+  }`}
+<div className="hero-background">
+  <div className={`hero-glow ${showGlow ? "hero-glow-active" : ""}`} />
+  <div className="hero-grid" />
+</div>
+>
       <div className="container mx-auto max-w-6xl">
         <div className="flex flex-col lg:flex-row items-center ">
           {/* Left side - Text content */}
           {/* Right side - Character image */}
           <div className="flex justify-center lg:justify-end relative w-full lg:w-auto">
-            <div className="relative top-10">
+            <div
+  className={`relative top-10 transition-all duration-1000 ${
+    imageVisible
+      ? "translate-y-0 opacity-100 scale-100"
+      : "translate-y-10 opacity-0 scale-95"
+  }`}
+>
               {/* Mobile: Hello text positioned on top of image */}
               <div className="lg:hidden  -top-150 z-10">
                 <div className="relative inline-block ">
@@ -98,7 +127,13 @@ export default function Banner(): React.JSX.Element {
               />
             </div>
           </div>
-          <div className="flex-1 space-y-6 text-center lg:text-left">
+          <div
+  className={`flex-1 space-y-6 text-center lg:text-left transition-all duration-1000 ${
+    contentVisible
+      ? "translate-x-0 opacity-100"
+      : "translate-x-10 opacity-0"
+  }`}
+>
             {/* Desktop: Hello text in original position */}
             <div className="hidden lg:inline-block relative">
               <Image
