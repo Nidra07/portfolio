@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import LoadingScreen from "@/components/LoadingScreen";
+import LoadingScreen from "./LoadingScreen";
 
 interface ClientLayoutProps {
   children: React.ReactNode;
