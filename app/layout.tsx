@@ -12,10 +12,10 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "Ibrahim Memon - Software Engineer & UI/UX Designer",
-  description: "A self-taught UI/UX designer and Software Engineer at WebHR. Creating meaningful and delightful digital products that balance user needs and business goals. 3+ years of industry experience.",
+  title: "Rudraaksh Singh - Full Stack Developer",
+  description: "I'm a passionate Full Stack Developer specializing in React, Next.js, TypeScript and Tailwind CSS. I enjoy building modern, responsive web applications with clean code and beautiful user experiences.",
   keywords: [
-    "Ibrahim Memon",
+    "Rudraaksh Singh",
     "Software Engineer",
     "UI/UX Designer",
     "Frontend Developer",
@@ -25,21 +25,21 @@ export const metadata: Metadata = {
     "WebHR Engineer",
     "Portfolio",
   ],
-  authors: [{ name: "Ibrahim Memon" }],
-  creator: "Ibrahim Memon",
-  publisher: "Ibrahim Memon",
+  authors: [{ name: "Rudraaksh Singh" }],
+  creator: "Rudraaksh Singh",
+  publisher: "Rudraaksh Singh",
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://ibiimemon.com",
-    title: "Ibrahim Memon - Software Engineer & UI/UX Designer",
-    description: "A self-taught UI/UX designer and Software Engineer at WebHR. Creating meaningful and delightful digital products.",
-    siteName: "Ibrahim Memon Portfolio",
+    url: "https://www.instagram.com/singhh.rudraa",
+    title: "Rudraaksh Singh - Full Stack Developer",
+    description: "Full Stack Developer, Next.js Developer, UI/UX designer Creating meaningful and delightful digital products.",
+    siteName: "Rudraaksh Singh Portfolio",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Ibrahim Memon - Software Engineer & UI/UX Designer",
-    description: "A self-taught UI/UX designer and Software Engineer at WebHR.",
+    title: "Rudraaksh Singh - Full Stack Developer",
+    description: "Full Stack Developer, Next.js Developer, UI/UX designer",
   },
   robots: {
     index: true,
@@ -68,7 +68,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link rel="canonical" href="https://ibiimemon.com" />
+        <link rel="canonical" href="https://www.instagram.com/singhh.rudraa" />
       </head>
       <body
         className={`${poppins.variable} font-sans antialiased`}
