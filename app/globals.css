@@ -38,3 +38,237 @@ img {
   height: auto;
   display: block;
 }
+
+/* ==========================================
+   Premium Loading Screen Animations
+========================================== */
+
+/* Aurora Background */
+.aurora-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(34,211,238,.18), transparent 35%),
+    radial-gradient(circle at 80% 30%, rgba(59,130,246,.16), transparent 35%),
+    radial-gradient(circle at 50% 80%, rgba(168,85,247,.18), transparent 40%),
+    #000;
+  background-size: 200% 200%;
+  animation: auroraMove 18s ease-in-out infinite;
+}
+
+@keyframes auroraMove {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Floating Particles */
+
+.particle {
+  position: absolute;
+  border-radius: 9999px;
+  background: rgba(34,211,238,.8);
+  box-shadow: 0 0 10px rgba(34,211,238,.8);
+  animation: floatParticle linear infinite;
+}
+
+@keyframes floatParticle {
+
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 0;
+  }
+
+  20% {
+    opacity: 1;
+  }
+
+  50% {
+    transform: translateY(-40px) scale(1.2);
+  }
+
+  100% {
+    transform: translateY(-100px) scale(.8);
+    opacity: 0;
+  }
+
+}
+
+/* Rotating Rings */
+
+.ring-one {
+  animation: rotateClockwise 8s linear infinite;
+}
+
+.ring-two {
+  animation: rotateCounter 6s linear infinite;
+}
+
+@keyframes rotateClockwise {
+
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+
+}
+
+@keyframes rotateCounter {
+
+  from {
+    transform: rotate(360deg);
+  }
+
+  to {
+    transform: rotate(0deg);
+  }
+
+}
+
+/* Glass Logo */
+
+.glass-logo {
+  width: 110px;
+  height: 110px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 9999px;
+
+  backdrop-filter: blur(18px);
+
+  background: rgba(255,255,255,.08);
+
+  border: 1px solid rgba(255,255,255,.15);
+
+  box-shadow:
+    0 0 40px rgba(34,211,238,.45),
+    inset 0 0 25px rgba(255,255,255,.08);
+
+  animation: logoGlow 3s ease-in-out infinite;
+}
+
+@keyframes logoGlow {
+
+  0%,100% {
+
+    box-shadow:
+      0 0 30px rgba(34,211,238,.35),
+      inset 0 0 20px rgba(255,255,255,.08);
+
+  }
+
+  50% {
+
+    box-shadow:
+      0 0 70px rgba(34,211,238,.9),
+      inset 0 0 30px rgba(255,255,255,.12);
+
+  }
+
+}
+
+/* Blinking Cursor */
+
+.cursor-blink {
+
+  animation: blink .9s infinite;
+
+}
+
+@keyframes blink {
+
+  50% {
+
+    opacity: 0;
+
+  }
+
+}
+
+/* Progress Bar */
+
+.gradient-progress {
+
+  background: linear-gradient(
+    90deg,
+    #22d3ee,
+    #3b82f6,
+    #8b5cf6
+  );
+
+  background-size: 300% 300%;
+
+  animation: progressGradient 3s linear infinite;
+
+}
+
+@keyframes progressGradient {
+
+  0% {
+
+    background-position: 0% 50%;
+
+  }
+
+  100% {
+
+    background-position: 100% 50%;
+
+  }
+
+}
+
+/* Fade */
+
+.loader-fade {
+
+  animation: fadeIn .8s ease;
+
+}
+
+@keyframes fadeIn {
+
+  from {
+
+    opacity: 0;
+
+    transform: scale(.96);
+
+  }
+
+  to {
+
+    opacity: 1;
+
+    transform: scale(1);
+
+  }
+
+}
+
+/* Responsive */
+
+@media (max-width:768px){
+
+  .glass-logo{
+
+    width:90px;
+    height:90px;
+
+  }
+
+}
