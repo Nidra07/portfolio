@@ -1,6 +1,6 @@
 # Personal Developer Portfolio 🚀
 
-[![Site preview](/public/assets/thumbnail.png)](https://figma-portfolio-ten.vercel.app/)
+[![Site preview](/public/assets/thumbnail.png)](https://portfolio-rudraaksh.vercel.app/)
 
 Welcome to my developer portfolio! This project showcases my skills, projects, and experience as a Software Engineer and UI/UX Designer. Built with [Next.js](https://nextjs.org/), [TypeScript](https://www.typescriptlang.org/), and [Tailwind CSS](https://tailwindcss.com). It not only provides a visually appealing representation of my work but also ensures optimal performance. View the [live site](https://portfolio-rudraaksh.vercel.app/).
 
