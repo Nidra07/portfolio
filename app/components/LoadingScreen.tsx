@@ -14,16 +14,16 @@ export default function LoadingScreen({
   const [text, setText] = useState("");
   const [progress, setProgress] = useState(0);
 
-  // Floating particles
   const particles = useMemo(
     () =>
-      Array.from({ length: 30 }, (_, i) => ({
+      Array.from({ length: 45 }, (_, i) => ({
         id: i,
         left: Math.random() * 100,
         top: Math.random() * 100,
-        size: 2 + Math.random() * 5,
-        delay: Math.random() * 6,
-        duration: 5 + Math.random() * 6,
+        size: Math.random() * 5 + 2,
+        delay: Math.random() * 8,
+        duration: Math.random() * 8 + 8,
+        opacity: Math.random() * 0.8 + 0.2,
       })),
     []
   );
@@ -32,17 +32,17 @@ export default function LoadingScreen({
   useEffect(() => {
     let index = 0;
 
-    const typing = setInterval(() => {
+    const timer = setInterval(() => {
       index++;
 
       setText(fullText.slice(0, index));
 
       if (index >= fullText.length) {
-        clearInterval(typing);
+        clearInterval(timer);
       }
-    }, 100);
+    }, 85);
 
-    return () => clearInterval(typing);
+    return () => clearInterval(timer);
   }, []);
 
   // Progress
@@ -54,14 +54,14 @@ export default function LoadingScreen({
 
           setTimeout(() => {
             onComplete();
-          }, 700);
+          }, 800);
 
           return 100;
         }
 
-        return prev + 2;
+        return prev + 1;
       });
-    }, 60);
+    }, 35);
 
     return () => clearInterval(timer);
   }, [onComplete]);
@@ -69,10 +69,12 @@ export default function LoadingScreen({
   return (
     <div className="fixed inset-0 z-[9999] overflow-hidden bg-black">
 
-      {/* Aurora Background */}
-      <div className="absolute inset-0 aurora-bg" />
+      {/* Aurora */}
+      <div className="aurora-bg" />
+      <div className="aurora-bg second" />
+      <div className="aurora-bg third" />
 
-      {/* Floating Particles */}
+      {/* Particles */}
       {particles.map((particle) => (
         <span
           key={particle.id}
@@ -82,6 +84,7 @@ export default function LoadingScreen({
             top: `${particle.top}%`,
             width: particle.size,
             height: particle.size,
+            opacity: particle.opacity,
             animationDelay: `${particle.delay}s`,
             animationDuration: `${particle.duration}s`,
           }}
@@ -90,71 +93,103 @@ export default function LoadingScreen({
 
       <div className="relative flex h-full flex-col items-center justify-center">
 
-        {/* Rotating Rings */}
-        <div className="relative flex h-40 w-40 items-center justify-center">
+        {/* Rings */}
+        <div className="relative flex h-52 w-52 items-center justify-center">
 
-          <div className="absolute inset-0 rounded-full border border-cyan-400/40 ring-one" />
+          <div className="ring ring-one" />
+          <div className="ring ring-two" />
+          <div className="ring ring-three" />
 
-          <div className="absolute inset-4 rounded-full border border-purple-400/40 ring-two" />
-
-          {/* Glass Logo */}
+          {/* Logo */}
           <div className="glass-logo">
-            <span className="text-5xl font-extrabold text-white">
+
+            <div className="glass-shine" />
+
+            <span className="relative z-10 text-5xl font-black tracking-wider text-white">
               RS
             </span>
+
           </div>
 
         </div>
 
         {/* Name */}
-        <h1 className="mt-10 text-center text-4xl font-bold text-white">
+        <h1 className="mt-10 text-center text-5xl font-black tracking-wide text-white">
+
           {text}
+
           <span className="cursor-blink">|</span>
+
         </h1>
 
         {/* Subtitle */}
-        <p className="mt-3 text-center text-gray-400">
+        <p className="mt-3 max-w-xl text-center text-gray-400">
           Software Engineer • UI/UX Designer • React Native Developer
         </p>
 
-        {/* Progress Section */}
+        {/* Progress */}
         <div className="mt-12 w-80">
 
-          <div className="mb-2 flex justify-between text-sm text-gray-400">
+          <div className="mb-3 flex justify-between text-sm text-gray-400">
+
             <span>Loading Portfolio...</span>
+
             <span>{progress}%</span>
+
           </div>
 
           <div className="h-3 overflow-hidden rounded-full bg-white/10">
+
             <div
-              className="gradient-progress h-full rounded-full"
+              className="gradient-progress"
               style={{
                 width: `${progress}%`,
               }}
             />
+
           </div>
-          {/* Glow Under Progress */}
-          <div className="mt-4 flex justify-center">
-            <div className="h-1 w-40 rounded-full bg-cyan-400/70 shadow-[0_0_25px_rgba(34,211,238,0.9)]" />
+          {/* Glow Line */}
+          <div className="mt-5 flex justify-center">
+            <div className="h-[3px] w-44 rounded-full bg-cyan-400 shadow-[0_0_30px_rgba(34,211,238,.9)]" />
           </div>
 
         </div>
 
         {/* Footer */}
-        <div className="absolute bottom-10 text-center">
-          <p className="text-xs tracking-[0.3em] uppercase text-gray-500">
-            Crafted with ❤️ by Rudraaksh Singh
+        <div className="absolute bottom-10 flex flex-col items-center">
+
+          <div className="mb-3 h-px w-24 bg-gradient-to-r from-transparent via-cyan-400 to-transparent opacity-60" />
+
+          <p className="text-xs uppercase tracking-[0.35em] text-gray-500">
+            Crafted by Rudraaksh Singh
           </p>
+
         </div>
 
       </div>
 
-      {/* Extra Ambient Glow */}
-      <div className="pointer-events-none absolute left-1/2 top-1/2 h-[450px] w-[450px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-500/10 blur-[140px]" />
+      {/* Ambient Glow */}
+      <div className="pointer-events-none absolute left-1/2 top-1/2 h-[520px] w-[520px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-500/10 blur-[180px]" />
 
-      <div className="pointer-events-none absolute left-1/3 top-1/3 h-[250px] w-[250px] rounded-full bg-purple-500/10 blur-[120px]" />
+      <div className="pointer-events-none absolute left-10 top-10 h-[240px] w-[240px] rounded-full bg-blue-500/10 blur-[120px]" />
 
-      <div className="pointer-events-none absolute bottom-0 left-0 h-[300px] w-[300px] rounded-full bg-blue-500/10 blur-[120px]" />
+      <div className="pointer-events-none absolute bottom-10 right-10 h-[280px] w-[280px] rounded-full bg-purple-500/10 blur-[140px]" />
+
+      <div className="pointer-events-none absolute left-1/3 top-1/4 h-[180px] w-[180px] rounded-full bg-cyan-300/10 blur-[100px]" />
+
+      <div className="pointer-events-none absolute bottom-1/4 left-1/4 h-[160px] w-[160px] rounded-full bg-indigo-400/10 blur-[90px]" />
+
+      {/* Decorative Grid */}
+      <div
+        className="pointer-events-none absolute inset-0 opacity-[0.03]"
+        style={{
+          backgroundImage: `
+            linear-gradient(rgba(255,255,255,.15) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255,255,255,.15) 1px, transparent 1px)
+          `,
+          backgroundSize: "40px 40px",
+        }}
+      />
 
     </div>
   );
