@@ -9,20 +9,37 @@ interface LoadingScreenProps {
 export default function LoadingScreen({
   onComplete,
 }: LoadingScreenProps): React.JSX.Element {
-  const fullText = "Rudraaksh";
+
+  const fullText = "Rudraaksh Singh";
 
   const [text, setText] = useState("");
   const [progress, setProgress] = useState(0);
+  const [phase, setPhase] = useState("Initializing");
 
+  // Stars
+  const stars = useMemo(
+    () =>
+      Array.from({ length: 120 }, (_, i) => ({
+        id: i,
+        left: Math.random() * 100,
+        top: Math.random() * 100,
+        size: Math.random() * 2 + 1,
+        delay: Math.random() * 5,
+        duration: Math.random() * 4 + 3,
+      })),
+    []
+  );
+
+  // Floating particles
   const particles = useMemo(
     () =>
-      Array.from({ length: 45 }, (_, i) => ({
+      Array.from({ length: 55 }, (_, i) => ({
         id: i,
         left: Math.random() * 100,
         top: Math.random() * 100,
         size: Math.random() * 5 + 2,
         delay: Math.random() * 8,
-        duration: Math.random() * 8 + 8,
+        duration: Math.random() * 10 + 8,
         opacity: Math.random() * 0.8 + 0.2,
       })),
     []
@@ -40,157 +57,213 @@ export default function LoadingScreen({
       if (index >= fullText.length) {
         clearInterval(timer);
       }
-    }, 85);
+    }, 80);
 
     return () => clearInterval(timer);
   }, []);
 
   // Progress
   useEffect(() => {
+
     const timer = setInterval(() => {
+
       setProgress((prev) => {
-        if (prev >= 100) {
-          clearInterval(timer);
 
-          setTimeout(() => {
-            onComplete();
-          }, 800);
+        const next = Math.min(prev + 1, 100);
 
-          return 100;
-        }
+        if (next < 30) setPhase("Initializing");
+        else if (next < 60) setPhase("Loading Assets");
+        else if (next < 90) setPhase("Building Experience");
+        else setPhase("Almost Ready");
 
-        return prev + 1;
+        return next;
+
       });
+
     }, 35);
 
     return () => clearInterval(timer);
-  }, [onComplete]);
 
-  return (
-    <div className="fixed inset-0 z-[9999] overflow-hidden bg-black">
+  }, []);
 
-      {/* Aurora */}
-      <div className="aurora-bg" />
-      <div className="aurora-bg second" />
-      <div className="aurora-bg third" />
+  // Finish
+  useEffect(() => {
 
-      {/* Particles */}
-      {particles.map((particle) => (
-        <span
-          key={particle.id}
-          className="particle"
-          style={{
-            left: `${particle.left}%`,
-            top: `${particle.top}%`,
-            width: particle.size,
-            height: particle.size,
-            opacity: particle.opacity,
-            animationDelay: `${particle.delay}s`,
-            animationDuration: `${particle.duration}s`,
-          }}
-        />
-      ))}
+    if (progress === 100) {
 
-      <div className="relative flex h-full flex-col items-center justify-center">
+      const timer = setTimeout(() => {
+        onComplete();
+      }, 900);
 
-        {/* Rings */}
-        <div className="relative flex h-52 w-52 items-center justify-center">
+      return () => clearTimeout(timer);
 
-          <div className="ring ring-one" />
-          <div className="ring ring-two" />
-          <div className="ring ring-three" />
+    }
 
-          {/* Logo */}
-          <div className="glass-logo">
+  }, [progress, onComplete]);
+return (
+  <div className="fixed inset-0 z-[9999] overflow-hidden bg-black">
 
-            <div className="glass-shine" />
+    {/* Aurora Layers */}
+    <div className="aurora aurora-one" />
+    <div className="aurora aurora-two" />
+    <div className="aurora aurora-three" />
 
-            <span className="relative z-10 text-5xl font-black tracking-wider text-white">
-              RS
-            </span>
+    {/* Star Field */}
+    {stars.map((star) => (
+      <span
+        key={star.id}
+        className="star"
+        style={{
+          left: `${star.left}%`,
+          top: `${star.top}%`,
+          width: star.size,
+          height: star.size,
+          animationDelay: `${star.delay}s`,
+          animationDuration: `${star.duration}s`,
+        }}
+      />
+    ))}
 
-          </div>
+    {/* Floating Particles */}
+    {particles.map((particle) => (
+      <span
+        key={particle.id}
+        className="particle"
+        style={{
+          left: `${particle.left}%`,
+          top: `${particle.top}%`,
+          width: particle.size,
+          height: particle.size,
+          opacity: particle.opacity,
+          animationDelay: `${particle.delay}s`,
+          animationDuration: `${particle.duration}s`,
+        }}
+      />
+    ))}
 
-        </div>
+    {/* Ambient Glows */}
+    <div className="glow glow-cyan" />
+    <div className="glow glow-blue" />
+    <div className="glow glow-purple" />
 
-        {/* Name */}
-        <h1 className="mt-10 text-center text-5xl font-black tracking-wide text-white">
+    <div className="relative flex h-full flex-col items-center justify-center">
 
-          {text}
+      {/* Premium Logo */}
+      <div className="relative flex h-64 w-64 items-center justify-center">
 
-          <span className="cursor-blink">|</span>
+        {/* Outer Ring */}
+        <div className="ring outer-ring">
 
-        </h1>
-
-        {/* Subtitle */}
-        <p className="mt-3 max-w-xl text-center text-gray-400">
-          Software Engineer • UI/UX Designer 
-        </p>
-
-        {/* Progress */}
-        <div className="mt-12 w-80">
-
-          <div className="mb-3 flex justify-between text-sm text-gray-400">
-
-            <span>Loading Portfolio...</span>
-
-            <span>{progress}%</span>
-
-          </div>
-
-          <div className="h-3 overflow-hidden rounded-full bg-white/10">
-
-            <div
-              className="gradient-progress"
-              style={{
-                width: `${progress}%`,
-              }}
-            />
-
-          </div>
-          {/* Glow Line */}
-          <div className="mt-5 flex justify-center">
-            <div className="h-[3px] w-44 rounded-full bg-cyan-400 shadow-[0_0_30px_rgba(34,211,238,.9)]" />
-          </div>
+          <span className="ring-dot top-dot" />
+          <span className="ring-dot right-dot" />
 
         </div>
 
-        {/* Footer */}
-        <div className="absolute bottom-10 flex flex-col items-center">
+        {/* Middle Ring */}
+        <div className="ring middle-ring">
 
-          <div className="mb-3 h-px w-24 bg-gradient-to-r from-transparent via-cyan-400 to-transparent opacity-60" />
+          <span className="ring-dot bottom-dot" />
+          <span className="ring-dot left-dot" />
 
-          <p className="text-xs uppercase tracking-[0.35em] text-gray-500">
-            Crafted by Rudraaksh Singh
-          </p>
+        </div>
+
+        {/* Inner Ring */}
+        <div className="ring inner-ring" />
+
+        {/* Glass Logo */}
+        <div className="glass-logo">
+
+          <div className="glass-shine" />
+
+          <div className="logo-inner-glow" />
+
+          <span className="relative z-10 text-6xl font-black tracking-[0.25em] text-white">
+            RS
+          </span>
 
         </div>
 
       </div>
 
-      {/* Ambient Glow */}
-      <div className="pointer-events-none absolute left-1/2 top-1/2 h-[520px] w-[520px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-500/10 blur-[180px]" />
+      {/* Name */}
+      <h1 className="mt-12 text-center text-5xl font-black tracking-wide text-white">
 
-      <div className="pointer-events-none absolute left-10 top-10 h-[240px] w-[240px] rounded-full bg-blue-500/10 blur-[120px]" />
+        {text}
 
-      <div className="pointer-events-none absolute bottom-10 right-10 h-[280px] w-[280px] rounded-full bg-purple-500/10 blur-[140px]" />
+        <span className="cursor-blink">|</span>
 
-      <div className="pointer-events-none absolute left-1/3 top-1/4 h-[180px] w-[180px] rounded-full bg-cyan-300/10 blur-[100px]" />
+      </h1>
 
-      <div className="pointer-events-none absolute bottom-1/4 left-1/4 h-[160px] w-[160px] rounded-full bg-indigo-400/10 blur-[90px]" />
+      {/* Loading Phase */}
+      <p className="mt-4 text-center text-cyan-300 tracking-[0.3em] uppercase text-sm">
 
-      {/* Decorative Grid */}
-      <div
-        className="pointer-events-none absolute inset-0 opacity-[0.03]"
-        style={{
-          backgroundImage: `
-            linear-gradient(rgba(255,255,255,.15) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(255,255,255,.15) 1px, transparent 1px)
-          `,
-          backgroundSize: "40px 40px",
-        }}
-      />
+        {phase}
+
+      </p>
+      {/* Progress Section */}
+      <div className="mt-12 w-[320px] max-w-[90vw]">
+
+        <div className="mb-3 flex items-center justify-between text-sm">
+
+          <span className="tracking-[0.25em] uppercase text-gray-400">
+            Loading Portfolio
+          </span>
+
+          <span className="font-semibold text-cyan-300">
+            {progress}%
+          </span>
+
+        </div>
+
+        <div className="relative h-3 overflow-hidden rounded-full border border-cyan-500/20 bg-white/5">
+
+          <div className="progress-shimmer" />
+
+          <div
+            className="gradient-progress"
+            style={{
+              width: `${progress}%`,
+            }}
+          />
+
+        </div>
+
+        <div className="mt-6 flex justify-center">
+
+          <div className="h-[3px] w-44 rounded-full bg-cyan-400 shadow-[0_0_40px_rgba(34,211,238,.9)]" />
+
+        </div>
+
+      </div>
+
+      {/* Footer */}
+      <div className="absolute bottom-10 flex flex-col items-center">
+
+        <div className="mb-3 h-px w-28 bg-gradient-to-r from-transparent via-cyan-400 to-transparent opacity-80" />
+
+        <p className="text-xs uppercase tracking-[0.35em] text-gray-500">
+          Crafted by Rudraaksh Singh
+        </p>
+
+      </div>
 
     </div>
-  );
+
+    {/* Floor Reflection */}
+    <div className="reflection" />
+
+    {/* Decorative Grid */}
+    <div
+      className="pointer-events-none absolute inset-0 opacity-[0.03]"
+      style={{
+        backgroundImage: `
+          linear-gradient(rgba(255,255,255,.15) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255,255,255,.15) 1px, transparent 1px)
+        `,
+        backgroundSize: "48px 48px",
+      }}
+    />
+
+  </div>
+);
 }
