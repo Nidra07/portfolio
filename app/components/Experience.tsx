@@ -11,14 +11,14 @@ interface ExperienceCard {
 const experienceCards: ExperienceCard[] = [
   {
     id: 1,
-    title: "WebHR - HR Management App",
-    description: "WebHR automates all of your company's HR processes such as Recruitment, Onboarding, Payroll, Time & Attendance, Leaves & PTO, Performance, and much more.",
+    title: "OGX Studio- Web Developer",
+    description: "OGX Studio automates all of your company's HR processes such as Recruitment, Onboarding, Payroll, Time & Attendance, Leaves & PTO, Performance, and much more.",
     icon: "/cards/card-1.png",
   },
   {
     id: 2,
-    title: "WebHR Kiosk - Time Clock Kiosk",
-    description: "WebHR Kiosk is a time clock kiosk that allows you to clock in and out of your work. It is a simple and easy to use app that allows you to clock in and out of your work.",
+    title: "OGX Studio Kiosk - Time Clock Kiosk",
+    description: "OGX Studio Kiosk is a time clock kiosk that allows you to clock in and out of your work. It is a simple and easy to use app that allows you to clock in and out of your work.",
     icon: "/cards/card-2.png",
   },
   {
@@ -65,7 +65,8 @@ export default function Experience(): React.JSX.Element {
                 {card.description}
               </p>
               <Link
-                href="https://ibiimemon.com/lab"
+                href="https://www.instagram
+com/singhh.rudraa"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-purple-400 hover:text-purple-300 font-medium text-sm transition-colors inline-block"
