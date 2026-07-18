@@ -64,7 +64,7 @@ img {
 
 .aurora-one::before{
   background:
-    radial-gradient(circle,#06b6d4 0%,transparent 70%);
+    radial-gradient(circle,#a855f7 0%,transparent 70%);
 }
 
 .aurora-two{
@@ -73,7 +73,7 @@ img {
 
 .aurora-two::before{
   background:
-    radial-gradient(circle,#3b82f6 0%,transparent 72%);
+    radial-gradient(circle,#9333ea 0%,transparent 72%);
 }
 
 .aurora-three{
@@ -273,8 +273,8 @@ img {
 
   box-shadow:
     inset 0 0 40px rgba(255,255,255,.08),
-    0 0 60px rgba(34,211,238,.45),
-    0 0 120px rgba(59,130,246,.22);
+    0 0 60px rgba(168,85,247,.45),
+    0 0 120px rgba(147,51,234,.22);
 
   animation:
     logoFloat 5s ease-in-out infinite;
@@ -385,10 +385,10 @@ img {
 
   border-radius:999px;
 
-  background:#22d3ee;
+  background:#c084fc;
 
   box-shadow:
-    0 0 18px #22d3ee,
+    0 0 18px #c084fc,
     0 0 30px rgba(34,211,238,.9);
 
 }
@@ -421,7 +421,7 @@ img {
    GLOW ORBS
 ========================================================== */
 
-.glow-cyan{
+.glow-purple{
 
   position:absolute;
 
@@ -446,7 +446,7 @@ img {
 
 }
 
-.glow-blue{
+background: rgba(147,51,234,.16);{
 
   position:absolute;
 
@@ -465,7 +465,7 @@ img {
 
 }
 
-.glow-purple{
+background: rgba(147,51,234,.16);{
 
   position:absolute;
 
@@ -586,12 +586,13 @@ img {
 
   background:
     linear-gradient(
-      90deg,
-      #06b6d4 0%,
-      #3b82f6 35%,
-      #8b5cf6 70%,
-      #06b6d4 100%
-    );
+    90deg,
+    #c084fc,
+    #a855f7,
+    #9333ea,
+    #7e22ce,
+    #c084fc
+);
 
   background-size:300% 100%;
 
@@ -599,7 +600,7 @@ img {
     gradientMove 4s linear infinite;
 
   box-shadow:
-    0 0 20px rgba(34,211,238,.7);
+    0 0 20px rgba(168,85,247,.7);
 
   transition:
     width .25s ease;
@@ -755,7 +756,7 @@ img {
 
 ::selection{
 
-  background:#22d3ee;
+  background:#c084fc;
 
   color:#000;
 
@@ -779,7 +780,7 @@ img {
 
 ::-webkit-scrollbar-thumb{
 
-  background:#22d3ee;
+  background:#c084fc;
 
   border-radius:999px;
 
@@ -787,7 +788,7 @@ img {
 
 ::-webkit-scrollbar-thumb:hover{
 
-  background:#3b82f6;
+  background:#9333ea;
 
 }
 
