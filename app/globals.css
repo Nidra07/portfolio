@@ -39,228 +39,481 @@ img {
   display: block;
 }
 
-/* ==========================================
-   Premium Loading Screen Animations
-========================================== */
+/* ==========================================================
+   PREMIUM LOADING SCREEN V2
+   PART 1
+========================================================== */
 
-/* Aurora Background */
+/* ---------- Aurora Background ---------- */
+
 .aurora-bg {
   position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(circle at 20% 20%, rgba(34,211,238,.18), transparent 35%),
-    radial-gradient(circle at 80% 30%, rgba(59,130,246,.16), transparent 35%),
-    radial-gradient(circle at 50% 80%, rgba(168,85,247,.18), transparent 40%),
-    #000;
-  background-size: 200% 200%;
+  inset: -25%;
+  filter: blur(120px);
+  opacity: .45;
   animation: auroraMove 18s ease-in-out infinite;
 }
 
-@keyframes auroraMove {
-  0% {
-    background-position: 0% 50%;
-  }
-
-  50% {
-    background-position: 100% 50%;
-  }
-
-  100% {
-    background-position: 0% 50%;
-  }
+.aurora-bg::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:50%;
+  background:
+    radial-gradient(circle,#22d3ee 0%,transparent 65%);
 }
 
-/* Floating Particles */
-
-.particle {
-  position: absolute;
-  border-radius: 9999px;
-  background: rgba(34,211,238,.8);
-  box-shadow: 0 0 10px rgba(34,211,238,.8);
-  animation: floatParticle linear infinite;
+.aurora-bg.second{
+  transform:translate(35%,-20%);
+  animation-duration:24s;
 }
 
-@keyframes floatParticle {
-
-  0% {
-    transform: translateY(0) scale(1);
-    opacity: 0;
-  }
-
-  20% {
-    opacity: 1;
-  }
-
-  50% {
-    transform: translateY(-40px) scale(1.2);
-  }
-
-  100% {
-    transform: translateY(-100px) scale(.8);
-    opacity: 0;
-  }
-
+.aurora-bg.second::before{
+  background:
+    radial-gradient(circle,#3b82f6 0%,transparent 70%);
 }
 
-/* Rotating Rings */
-
-.ring-one {
-  animation: rotateClockwise 8s linear infinite;
+.aurora-bg.third{
+  transform:translate(-30%,25%);
+  animation-duration:28s;
 }
 
-.ring-two {
-  animation: rotateCounter 6s linear infinite;
+.aurora-bg.third::before{
+  background:
+    radial-gradient(circle,#8b5cf6 0%,transparent 70%);
 }
 
-@keyframes rotateClockwise {
+@keyframes auroraMove{
 
-  from {
-    transform: rotate(0deg);
+  0%{
+    transform:translate(-5%,-5%) scale(1);
   }
 
-  to {
-    transform: rotate(360deg);
+  25%{
+    transform:translate(8%,-2%) scale(1.08);
+  }
+
+  50%{
+    transform:translate(4%,8%) scale(1.12);
+  }
+
+  75%{
+    transform:translate(-8%,5%) scale(1.05);
+  }
+
+  100%{
+    transform:translate(-5%,-5%) scale(1);
   }
 
 }
 
-@keyframes rotateCounter {
+/* ---------- Floating Particles ---------- */
 
-  from {
-    transform: rotate(360deg);
-  }
+.particle{
 
-  to {
-    transform: rotate(0deg);
-  }
+  position:absolute;
 
-}
+  border-radius:9999px;
 
-/* Glass Logo */
-
-.glass-logo {
-  width: 110px;
-  height: 110px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  border-radius: 9999px;
-
-  backdrop-filter: blur(18px);
-
-  background: rgba(255,255,255,.08);
-
-  border: 1px solid rgba(255,255,255,.15);
+  background:#22d3ee;
 
   box-shadow:
-    0 0 40px rgba(34,211,238,.45),
-    inset 0 0 25px rgba(255,255,255,.08);
+    0 0 12px rgba(34,211,238,.8);
 
-  animation: logoGlow 3s ease-in-out infinite;
+  animation:floatParticle linear infinite;
+
 }
 
-@keyframes logoGlow {
+@keyframes floatParticle{
 
-  0%,100% {
+  0%{
 
+    transform:
+      translateY(0)
+      scale(.5);
+
+    opacity:0;
+
+  }
+
+  15%{
+
+    opacity:1;
+
+  }
+
+  50%{
+
+    transform:
+      translateY(-60px)
+      scale(1);
+
+  }
+
+  100%{
+
+    transform:
+      translateY(-150px)
+      scale(.3);
+
+    opacity:0;
+
+  }
+
+}
+
+/* ---------- Rings ---------- */
+
+.ring{
+
+  position:absolute;
+
+  inset:0;
+
+  border-radius:9999px;
+
+  border:2px solid rgba(255,255,255,.08);
+
+}
+
+.ring-one{
+
+  border-color:
+    rgba(34,211,238,.45);
+
+  animation:
+    rotateClockwise 10s linear infinite;
+
+}
+
+.ring-two{
+
+  inset:18px;
+
+  border-color:
+    rgba(59,130,246,.45);
+
+  animation:
+    rotateCounter 7s linear infinite;
+
+}
+
+.ring-three{
+
+  inset:36px;
+
+  border-style:dashed;
+
+  border-color:
+    rgba(168,85,247,.45);
+
+  animation:
+    rotateClockwise 14s linear infinite;
+
+}
+
+@keyframes rotateClockwise{
+
+  from{
+
+    transform:rotate(0deg);
+
+  }
+
+  to{
+
+    transform:rotate(360deg);
+
+  }
+
+}
+
+@keyframes rotateCounter{
+
+  from{
+
+    transform:rotate(360deg);
+
+  }
+
+  to{
+
+    transform:rotate(0deg);
+
+  }
+
+}
+
+/* ---------- Glass Logo ---------- */
+
+.glass-logo{
+
+  position:relative;
+
+  width:120px;
+  height:120px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:9999px;
+
+  backdrop-filter:blur(22px);
+
+  background:
+    rgba(255,255,255,.08);
+
+  border:
+    1px solid rgba(255,255,255,.15);
+
+  overflow:hidden;
+
+  box-shadow:
+    0 0 50px rgba(34,211,238,.45),
+    inset 0 0 20px rgba(255,255,255,.08);
+
+  animation:
+    logoPulse 3s ease-in-out infinite;
+
+}
+
+.glass-shine{
+
+  position:absolute;
+
+  top:-60%;
+
+  left:-120%;
+
+  width:70%;
+
+  height:220%;
+
+  transform:rotate(25deg);
+
+  background:
+    linear-gradient(
+      transparent,
+      rgba(255,255,255,.35),
+      transparent
+    );
+
+  animation:
+    shine 4s linear infinite;
+
+}
+/* ==========================================================
+   PREMIUM LOADING SCREEN V2
+   PART 2
+========================================================== */
+
+/* ---------- Logo Animations ---------- */
+
+@keyframes logoPulse {
+
+  0%,100%{
+    transform:scale(1);
     box-shadow:
-      0 0 30px rgba(34,211,238,.35),
+      0 0 50px rgba(34,211,238,.45),
       inset 0 0 20px rgba(255,255,255,.08);
-
   }
 
-  50% {
-
+  50%{
+    transform:scale(1.06);
     box-shadow:
-      0 0 70px rgba(34,211,238,.9),
+      0 0 80px rgba(34,211,238,.75),
+      0 0 120px rgba(59,130,246,.35),
       inset 0 0 30px rgba(255,255,255,.12);
+  }
+
+}
+
+@keyframes shine{
+
+  0%{
+    left:-120%;
+  }
+
+  100%{
+    left:180%;
+  }
+
+}
+
+/* ---------- Cursor ---------- */
+
+.cursor-blink{
+
+  display:inline-block;
+
+  margin-left:2px;
+
+  animation:blink .8s infinite;
+
+}
+
+@keyframes blink{
+
+  0%,50%{
+    opacity:1;
+  }
+
+  51%,100%{
+    opacity:0;
+  }
+
+}
+
+/* ---------- Progress ---------- */
+
+.gradient-progress{
+
+  height:100%;
+
+  border-radius:999px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #06b6d4,
+      #3b82f6,
+      #8b5cf6,
+      #06b6d4
+    );
+
+  background-size:300% 100%;
+
+  animation:
+    progressGradient 4s linear infinite;
+
+  box-shadow:
+    0 0 18px rgba(34,211,238,.65);
+
+  transition:width .25s ease;
+
+}
+
+@keyframes progressGradient{
+
+  from{
+    background-position:0% 50%;
+  }
+
+  to{
+    background-position:300% 50%;
+  }
+
+}
+
+/* ---------- Fade ---------- */
+
+.fadeContent{
+
+  animation:
+    fadeContent .8s ease forwards;
+
+}
+
+@keyframes fadeContent{
+
+  from{
+
+    opacity:0;
+
+    transform:
+      translateY(20px)
+      scale(.98);
+
+  }
+
+  to{
+
+    opacity:1;
+
+    transform:
+      translateY(0)
+      scale(1);
 
   }
 
 }
 
-/* Blinking Cursor */
+/* ---------- Ambient Glow ---------- */
 
-.cursor-blink {
+.glow{
 
-  animation: blink .9s infinite;
+  position:absolute;
+
+  border-radius:999px;
+
+  filter:blur(100px);
+
+  opacity:.35;
+
+  animation:glowFloat 10s ease-in-out infinite;
 
 }
 
-@keyframes blink {
+@keyframes glowFloat{
 
-  50% {
+  0%,100%{
 
-    opacity: 0;
+    transform:
+      translateY(0)
+      scale(1);
+
+  }
+
+  50%{
+
+    transform:
+      translateY(-25px)
+      scale(1.1);
 
   }
 
 }
 
-/* Progress Bar */
+/* ---------- Selection ---------- */
 
-.gradient-progress {
+::selection{
 
-  background: linear-gradient(
-    90deg,
-    #22d3ee,
-    #3b82f6,
-    #8b5cf6
-  );
+  background:#22d3ee;
 
-  background-size: 300% 300%;
-
-  animation: progressGradient 3s linear infinite;
+  color:#000;
 
 }
 
-@keyframes progressGradient {
+/* ---------- Scrollbar ---------- */
 
-  0% {
+::-webkit-scrollbar{
 
-    background-position: 0% 50%;
-
-  }
-
-  100% {
-
-    background-position: 100% 50%;
-
-  }
+  width:8px;
 
 }
 
-/* Fade */
+::-webkit-scrollbar-track{
 
-.loader-fade {
-
-  animation: fadeIn .8s ease;
+  background:#09090b;
 
 }
 
-@keyframes fadeIn {
+::-webkit-scrollbar-thumb{
 
-  from {
+  background:#22d3ee;
 
-    opacity: 0;
-
-    transform: scale(.96);
-
-  }
-
-  to {
-
-    opacity: 1;
-
-    transform: scale(1);
-
-  }
+  border-radius:999px;
 
 }
 
-/* Responsive */
+::-webkit-scrollbar-thumb:hover{
+
+  background:#3b82f6;
+
+}
+
+/* ---------- Responsive ---------- */
 
 @media (max-width:768px){
 
@@ -268,6 +521,44 @@ img {
 
     width:90px;
     height:90px;
+
+  }
+
+  .glass-logo span{
+
+    font-size:2rem;
+
+  }
+
+  .ring-two{
+
+    inset:14px;
+
+  }
+
+  .ring-three{
+
+    inset:28px;
+
+  }
+
+  h1{
+
+    font-size:2rem !important;
+
+  }
+
+}
+
+@media (prefers-reduced-motion:reduce){
+
+  *,
+  *::before,
+  *::after{
+
+    animation:none !important;
+
+    transition:none !important;
 
   }
 
