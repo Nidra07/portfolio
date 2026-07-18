@@ -9,7 +9,7 @@ interface LoadingScreenProps {
 export default function LoadingScreen({
   onComplete,
 }: LoadingScreenProps): React.JSX.Element {
-  const fullText = "Rudraaksh Singh";
+  const fullText = "Rudraaksh";
 
   const [text, setText] = useState("");
   const [progress, setProgress] = useState(0);
@@ -124,7 +124,7 @@ export default function LoadingScreen({
 
         {/* Subtitle */}
         <p className="mt-3 max-w-xl text-center text-gray-400">
-          Software Engineer • UI/UX Designer • React Native Developer
+          Software Engineer • UI/UX Designer 
         </p>
 
         {/* Progress */}
