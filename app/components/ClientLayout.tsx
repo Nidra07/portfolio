@@ -1,33 +1,30 @@
 "use client";
 
 import { useState } from "react";
-import { AnimatePresence, motion } from "motion/react";
 import LoadingScreen from "./LoadingScreen";
+
+interface ClientLayoutProps {
+  children: React.ReactNode;
+}
 
 export default function ClientLayout({
   children,
-}: {
-  children: React.ReactNode;
-}) {
+}: ClientLayoutProps): React.JSX.Element {
   const [loading, setLoading] = useState(true);
 
   return (
-    <AnimatePresence mode="wait">
+    <>
       {loading ? (
         <LoadingScreen
-          key="loader"
           onComplete={() => setLoading(false)}
         />
       ) : (
-        <motion.div
-          key="content"
-          initial={{ opacity: 0, y: 25 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+        <div
+          className="animate-[fadeContent_.8s_ease]"
         >
           {children}
-        </motion.div>
+        </div>
       )}
-    </AnimatePresence>
+    </>
   );
 }
