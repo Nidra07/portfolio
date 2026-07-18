@@ -195,7 +195,7 @@ return (
       </h1>
 
       {/* Loading Phase */}
-      <p className="mt-4 text-center text-cyan-300 tracking-[0.3em] uppercase text-sm">
+      <p className="mt-4 text-center text-purple-300 tracking-[0.3em] uppercase text-sm">
 
         {phase}
 
@@ -215,7 +215,7 @@ return (
 
         </div>
 
-        <div className="relative h-3 overflow-hidden rounded-full border border-cyan-500/20 bg-white/5">
+        <div className="relative h-3 overflow-hidden rounded-full border border-purple-500/20 bg-white/5">
 
           <div className="progress-shimmer" />
 
@@ -230,7 +230,7 @@ return (
 
         <div className="mt-6 flex justify-center">
 
-          <div className="h-[3px] w-44 rounded-full bg-cyan-400 shadow-[0_0_40px_rgba(34,211,238,.9)]" />
+          <div className="h-[3px] w-44 rounded-full bg-purple-400 shadow-[0_0_40px_rgba(34,211,238,.9)]" />
 
         </div>
 
@@ -239,7 +239,7 @@ return (
       {/* Footer */}
       <div className="absolute bottom-10 flex flex-col items-center">
 
-        <div className="mb-3 h-px w-28 bg-gradient-to-r from-transparent via-cyan-400 to-transparent opacity-80" />
+        <div className="mb-3 h-px w-28 bg-gradient-to-r from-transparent via-purple-400 to-transparent opacity-80" />
 
         <p className="text-xs uppercase tracking-[0.35em] text-gray-500">
           Crafted by Rudraaksh Singh
