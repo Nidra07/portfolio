@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
 
 export default function ProjectsPage() {
@@ -10,34 +10,55 @@ export default function ProjectsPage() {
   const [live, setLive] = useState("");
   const [technologies, setTechnologies] = useState("");
 
-async function saveProject() {
-  const { error } = await supabase.from("projects").insert({
-    title,
-    description,
-    github,
-    live,
-    technologies,
-  });
+  const [projects, setProjects] = useState<any[]>([]);
 
-  if (error) {
-    alert(error.message);
-    return;
+  useEffect(() => {
+    loadProjects();
+  }, []);
+
+  async function loadProjects() {
+    const { data, error } = await supabase
+      .from("projects")
+      .select("*")
+      .order("created_at", { ascending: false });
+
+    if (!error && data) {
+      setProjects(data);
+    }
   }
 
-  alert("Project saved successfully!");
+  async function saveProject() {
+    const { error } = await supabase.from("projects").insert({
+      title,
+      description,
+      github,
+      live,
+      technologies,
+    });
 
-  setTitle("");
-  setDescription("");
-  setGithub("");
-  setLive("");
-  setTechnologies("");
-}  
-return (
+    if (error) {
+      alert(error.message);
+      return;
+    }
+
+    alert("Project saved successfully!");
+
+    setTitle("");
+    setDescription("");
+    setGithub("");
+    setLive("");
+    setTechnologies("");
+
+    await loadProjects();
+  }
+
+  return (
     <main className="min-h-screen bg-black text-white p-8">
-      <h1 className="text-3xl font-bold mb-8">Projects Manager</h1>
+      <h1 className="mb-8 text-3xl font-bold">
+        Projects Manager
+      </h1>
 
-      <div className="space-y-4 max-w-2xl">
-
+      <div className="max-w-2xl space-y-4">
         <input
           className="w-full rounded-lg bg-zinc-900 p-3"
           placeholder="Project Title"
@@ -69,18 +90,58 @@ return (
 
         <input
           className="w-full rounded-lg bg-zinc-900 p-3"
-          placeholder="Technologies (React, Next.js...)"
+          placeholder="Technologies (React, Next.js, Tailwind...)"
           value={technologies}
           onChange={(e) => setTechnologies(e.target.value)}
         />
 
         <button
-  onClick={saveProject}
-  className="rounded-lg bg-cyan-500 px-6 py-3 font-bold text-black"
->
-  Save Project
-</button>
+          onClick={saveProject}
+          className="rounded-lg bg-cyan-500 px-6 py-3 font-bold text-black"
+        >
+          Save Project
+        </button>
+      </div>
 
+      <div className="mt-12 max-w-4xl space-y-4">
+        <h2 className="text-2xl font-bold">
+          Saved Projects
+        </h2>
+
+        {projects.length === 0 ? (
+          <p className="text-gray-400">
+            No projects found.
+          </p>
+        ) : (
+          projects.map((project) => (
+            <div
+              key={project.id}
+              className="rounded-xl border border-white/10 bg-zinc-900 p-5"
+            >
+              <h3 className="text-xl font-bold">
+                {project.title}
+              </h3>
+
+              <p className="mt-2 text-gray-300">
+                {project.description}
+              </p>
+
+              <p className="mt-3 text-cyan-400">
+                {project.technologies}
+              </p>
+
+              <div className="mt-4 flex gap-3">
+                <button className="rounded bg-yellow-500 px-4 py-2 font-semibold text-black">
+                  Edit
+                </button>
+
+                <button className="rounded bg-red-500 px-4 py-2 font-semibold text-white">
+                  Delete
+                </button>
+              </div>
+            </div>
+          ))
+        )}
       </div>
     </main>
   );
