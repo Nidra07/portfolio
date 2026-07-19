@@ -83,6 +83,7 @@ useEffect(() => {
 style={{
   transitionDelay: `${card.id * 180}ms`,
 }}
+>
               <div className="mb-4 ">
                 <Image
                   src={card.icon}
@@ -100,8 +101,7 @@ style={{
                 {card.description}
               </p>
               <Link
-                href="https://www.instagram
-com/singhh.rudraa"
+                href="https://www.instagram.com/singhh.rudraa"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-purple-400 hover:text-purple-300 font-medium text-sm transition-colors inline-block"
