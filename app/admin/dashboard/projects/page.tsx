@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { supabase } from "@/lib/supabase";
 
 export default function ProjectsPage() {
   const [title, setTitle] = useState("");
@@ -9,7 +10,29 @@ export default function ProjectsPage() {
   const [live, setLive] = useState("");
   const [technologies, setTechnologies] = useState("");
 
-  return (
+async function saveProject() {
+  const { error } = await supabase.from("projects").insert({
+    title,
+    description,
+    github,
+    live,
+    technologies,
+  });
+
+  if (error) {
+    alert(error.message);
+    return;
+  }
+
+  alert("Project saved successfully!");
+
+  setTitle("");
+  setDescription("");
+  setGithub("");
+  setLive("");
+  setTechnologies("");
+}  
+return (
     <main className="min-h-screen bg-black text-white p-8">
       <h1 className="text-3xl font-bold mb-8">Projects Manager</h1>
 
@@ -52,10 +75,11 @@ export default function ProjectsPage() {
         />
 
         <button
-          className="rounded-lg bg-cyan-500 px-6 py-3 font-bold text-black"
-        >
-          Save Project
-        </button>
+  onClick={saveProject}
+  className="rounded-lg bg-cyan-500 px-6 py-3 font-bold text-black"
+>
+  Save Project
+</button>
 
       </div>
     </main>
