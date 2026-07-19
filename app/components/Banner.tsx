@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { getHero } from "@/lib/hero";
 import { useEffect, useState } from "react";
 
 export default function Banner(): React.JSX.Element {
@@ -19,6 +20,14 @@ export default function Banner(): React.JSX.Element {
   const [imageVisible, setImageVisible] = useState(false);
   const [contentVisible, setContentVisible] = useState(false);
   const [showGlow, setShowGlow] = useState(false);
+const [hero, setHero] = useState({
+  title: "",
+  subtitle: "",
+  description: "",
+  button_text: "",
+  button_link: "",
+  image: "",
+});
 
   useEffect(() => {
     const currentText = texts[currentTextIndex];
@@ -72,7 +81,17 @@ export default function Banner(): React.JSX.Element {
       clearTimeout(t4);
     };
   }, []);
+useEffect(() => {
+  async function loadHero() {
+    const data = await getHero();
 
+    if (data) {
+      setHero(data);
+    }
+  }
+
+  loadHero();
+}, []);
   return (
     <section
       id="home"
@@ -232,17 +251,17 @@ export default function Banner(): React.JSX.Element {
               </p>
 
               <p className="text-lg lg:text-xl text-white/90 tracking-wide">
-                Building modern web applications with React & Next.js.
+                {hero.subtitle || "Building modern web applications with React & Next.js."}
               </p>
 
               <p className="text-lg text-white/80 max-w-2xl mt-10">
-                I'm a passionate Full Stack Developer specializing in React,
-                Next.js, TypeScript and Tailwind CSS.
+                {hero.description ||
+  "I'm a passionate Full Stack Developer specializing in React, Next.js, TypeScript and Tailwind CSS."}
               </p>
 
               <div className="mt-10 flex flex-wrap gap-5 justify-center lg:justify-start">
-                <a href="#lab" className="hero-btn-primary">
-                  View Projects
+                <a href={hero.button_link || "#lab"} className="hero-btn-primary">
+                  {hero.button_text || "View Projects"}
                 </a>
 
                 <a href="#about" className="hero-btn-secondary">
