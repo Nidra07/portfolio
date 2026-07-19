@@ -1966,3 +1966,87 @@ display:flex;
   }
 
 }
+/* ==========================================================
+   GLOBAL REVEAL
+========================================================== */
+
+.reveal{
+  opacity:0;
+  transform:translateY(60px);
+  transition:
+    opacity .8s ease,
+    transform .8s ease;
+}
+
+.reveal-active{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* stagger helpers */
+
+.delay-1{transition-delay:.1s;}
+.delay-2{transition-delay:.2s;}
+.delay-3{transition-delay:.3s;}
+.delay-4{transition-delay:.4s;}
+.delay-5{transition-delay:.5s;}
+
+/* smooth scrolling */
+
+html{
+  scroll-behavior:smooth;
+}
+
+/* nicer selection */
+
+::selection{
+  background:#a855f7;
+  color:#fff;
+}
+
+/* smooth focus */
+
+button,
+a{
+  transition:
+    color .25s ease,
+    background-color .25s ease,
+    border-color .25s ease,
+    transform .25s ease;
+}
+
+/* image hover */
+
+img{
+  transition:
+    transform .4s ease,
+    filter .4s ease;
+}
+
+/* glass hover */
+
+.glass-hover{
+  transition:.35s ease;
+}
+
+.glass-hover:hover{
+  transform:translateY(-8px);
+  box-shadow:0 20px 60px rgba(168,85,247,.25);
+}
+
+/* disable animations for users who prefer reduced motion */
+
+@media (prefers-reduced-motion: reduce){
+
+  html{
+    scroll-behavior:auto;
+  }
+
+  *,
+  *::before,
+  *::after{
+    animation:none !important;
+    transition:none !important;
+  }
+
+}
