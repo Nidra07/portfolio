@@ -1125,3 +1125,186 @@ header{
   }
 
 }
+/* =========================================
+   HERO SECTION
+========================================= */
+
+.hero-section {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-visible {
+  animation: heroFade 1s ease forwards;
+}
+
+@keyframes heroFade {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================================
+   HERO BACKGROUND
+========================================= */
+
+.hero-background {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(168,85,247,.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(168,85,247,.05) 1px, transparent 1px);
+  background-size: 70px 70px;
+  opacity: .4;
+}
+
+.hero-glow {
+  position: absolute;
+  width: 650px;
+  height: 650px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) scale(.7);
+  border-radius: 999px;
+  background: radial-gradient(circle,
+      rgba(168,85,247,.35),
+      rgba(168,85,247,.08),
+      transparent 70%);
+  filter: blur(80px);
+  opacity: 0;
+  transition: 1.5s;
+}
+
+.hero-glow-active {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+/* =========================================
+   FLOATING GLOW
+========================================= */
+
+.hero-floating-glow {
+  position: absolute;
+  inset: -40px;
+  border-radius: 50%;
+  background: radial-gradient(circle,
+      rgba(168,85,247,.35),
+      transparent 70%);
+  filter: blur(40px);
+  opacity: 0;
+  animation: floatGlow 6s ease-in-out infinite;
+  transition: opacity .8s;
+}
+
+.hero-floating-glow-active {
+  opacity: 1;
+}
+
+@keyframes floatGlow {
+  0%,100%{
+    transform: translateY(0);
+  }
+  50%{
+    transform: translateY(-18px);
+  }
+}
+
+/* =========================================
+   HERO NAME
+========================================= */
+
+.hero-name{
+  background: linear-gradient(
+    90deg,
+    #ffffff,
+    #d8b4fe,
+    #a855f7,
+    #ffffff
+  );
+  background-size: 300%;
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  animation: heroGradient 6s linear infinite;
+}
+
+@keyframes heroGradient{
+  from{
+    background-position:0%;
+  }
+  to{
+    background-position:300%;
+  }
+}
+
+/* =========================================
+   BUTTONS
+========================================= */
+
+.hero-btn-primary{
+  padding:14px 34px;
+  border-radius:999px;
+  background:#a855f7;
+  color:white;
+  font-weight:600;
+  transition:.35s;
+  box-shadow:0 0 30px rgba(168,85,247,.35);
+}
+
+.hero-btn-primary:hover{
+  transform:translateY(-4px);
+  box-shadow:0 18px 40px rgba(168,85,247,.45);
+}
+
+.hero-btn-secondary{
+  padding:14px 34px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.15);
+  background:rgba(255,255,255,.05);
+  backdrop-filter:blur(18px);
+  color:white;
+  transition:.35s;
+}
+
+.hero-btn-secondary:hover{
+  background:rgba(168,85,247,.12);
+  border-color:#a855f7;
+  transform:translateY(-4px);
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media(max-width:768px){
+
+.hero-glow{
+width:420px;
+height:420px;
+}
+
+.hero-name{
+font-size:2.2rem;
+}
+
+.hero-btn-primary,
+.hero-btn-secondary{
+width:100%;
+justify-content:center;
+display:flex;
+}
+
+}
