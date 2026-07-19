@@ -27,17 +27,12 @@ export default function DashboardPage() {
               Manage {card} section
             </p>
 
-            {card === "Hero" ? (
-              <Link
-                href="/admin/dashboard/hero"
-                className="mt-6 inline-block rounded-lg bg-cyan-500 px-4 py-2 font-semibold text-black"
-              >
-                Open
-              </Link>
-            ) : (
-              <button className="mt-6 rounded-lg bg-cyan-500 px-4 py-2 font-semibold text-black">
-                Open
-              </button>
+            <Link
+  href={`/admin/dashboard/${card.toLowerCase()}`}
+  className="mt-6 inline-block rounded-lg bg-cyan-500 px-4 py-2 font-semibold text-black"
+>
+  Open
+</Link>
             )}
           </div>
         ))}
