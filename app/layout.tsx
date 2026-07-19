@@ -3,6 +3,7 @@ import { Poppins } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import MouseGlow from "./components/MouseGlow";
 import ScrollReveal from "./components/ScrollReveal";
+import ContentProtection from "./components/ContentProtection";
 
 import "./globals.css";
 import ClientLayout from "./components/ClientLayout";
@@ -56,7 +57,7 @@ export default function RootLayout({
       <body className={`${poppins.variable} font-sans antialiased`}>
         <ClientLayout>
           <MouseGlow />
-          <ScrollReveal />
+          <ContentProtection />
           {children}
         </ClientLayout>
 
