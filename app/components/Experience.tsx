@@ -1,5 +1,7 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 interface ExperienceCard {
   id: number;
@@ -36,18 +38,51 @@ const experienceCards: ExperienceCard[] = [
 ];
 
 export default function Experience(): React.JSX.Element {
+const [visible, setVisible] = useState(false);
+
+useEffect(() => {
+  const observer = new IntersectionObserver(
+    ([entry]) => {
+      if (entry.isIntersecting) {
+        setVisible(true);
+      }
+    },
+    {
+      threshold: 0.2,
+    }
+  );
+
+  const section = document.getElementById("experience");
+
+  if (section) observer.observe(section);
+
+  return () => observer.disconnect();
+}, []);
   return (
-    <section id="experience" className="py-20 px-6">
+    <section
+  id="experience"
+  className={`experience-section py-20 px-6 ${
+    visible ? "experience-visible" : ""
+  }`}
+>
       <div className="container mx-auto max-w-6xl">
-        <h2 className="text-4xl lg:text-5xl font-bold text-white mb-12 text-center">
+        <h2
+  className={`experience-title text-4xl lg:text-5xl font-bold text-white mb-12 text-center ${
+    visible ? "experience-title-visible" : ""
+  }`}
+>
           Work Experience
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {experienceCards.map((card) => (
             <div
               key={card.id}
-              className="bg-gradient-to-r from-slate-950 via-purple-950 to-slate-950  backdrop-blur-sm rounded-xl p-6 border-t-3 border-purple-700 hover:shadow-2xl hover:shadow-purple-900 flex items-center gap-4"
-            >
+              className={`experience-card bg-gradient-to-r from-slate-950 via-purple-950 to-slate-950 backdrop-blur-sm rounded-xl p-6 border-t-3 border-purple-700 flex items-center gap-4 ${
+  visible ? "experience-card-visible" : ""
+}`}
+style={{
+  transitionDelay: `${card.id * 180}ms`,
+}}
               <div className="mb-4 ">
                 <Image
                   src={card.icon}
