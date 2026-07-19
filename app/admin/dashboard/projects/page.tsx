@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import ProjectForm from "@/components/admin/ProjectForm";
+import ProjectForm from "@/app/components/admin/ProjectForm";
 import { supabase } from "@/lib/supabase";
 
 export default function ProjectsPage() {
