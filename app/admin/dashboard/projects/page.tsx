@@ -75,100 +75,73 @@ const [featured, setFeatured] = useState(false);
     await loadProjects();
   }
 
-  return (
-    <main className="min-h-screen bg-black text-white p-8">
-      <h1 className="mb-8 text-3xl font-bold">
-        Projects Manager
-      </h1>
+return (
+  <main className="min-h-screen bg-black p-8 text-white">
+    <h1 className="mb-8 text-3xl font-bold">
+      Projects Manager
+    </h1>
 
-      <div className="max-w-2xl space-y-4">
-        <input
-          className="w-full rounded-lg bg-zinc-900 p-3"
-          placeholder="Project Title"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-        />
+    <ProjectForm
+      title={title}
+      setTitle={setTitle}
+      description={description}
+      setDescription={setDescription}
+      github={github}
+      setGithub={setGithub}
+      live={live}
+      setLive={setLive}
+      technologies={technologies}
+      setTechnologies={setTechnologies}
+      image={image}
+      setImage={setImage}
+      featured={featured}
+      setFeatured={setFeatured}
+      onSubmit={saveProject}
+      buttonText={editingId ? "Update Project" : "Save Project"}
+    />
 
-        <textarea
-          className="w-full rounded-lg bg-zinc-900 p-3"
-          placeholder="Description"
-          rows={5}
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-        />
+    <div className="mt-12 max-w-4xl space-y-4">
+      <h2 className="text-2xl font-bold">
+        Saved Projects
+      </h2>
 
-        <input
-          className="w-full rounded-lg bg-zinc-900 p-3"
-          placeholder="GitHub URL"
-          value={github}
-          onChange={(e) => setGithub(e.target.value)}
-        />
+      {projects.length === 0 ? (
+        <p className="text-gray-400">
+          No projects found.
+        </p>
+      ) : (
+        projects.map((project) => (
+          <div
+            key={project.id}
+            className="rounded-xl border border-white/10 bg-zinc-900 p-5"
+          >
+            <h3 className="text-xl font-bold">
+              {project.title}
+            </h3>
 
-        <input
-          className="w-full rounded-lg bg-zinc-900 p-3"
-          placeholder="Live Demo URL"
-          value={live}
-          onChange={(e) => setLive(e.target.value)}
-        />
+            <p className="mt-2 text-gray-300">
+              {project.description}
+            </p>
 
-        <input
-          className="w-full rounded-lg bg-zinc-900 p-3"
-          placeholder="Technologies (React, Next.js, Tailwind...)"
-          value={technologies}
-          onChange={(e) => setTechnologies(e.target.value)}
-        />
+            <p className="mt-3 text-cyan-400">
+              {project.technologies}
+            </p>
 
-        <button
-          onClick={saveProject}
-          className="rounded-lg bg-cyan-500 px-6 py-3 font-bold text-black"
-        >
-          Save Project
-        </button>
-      </div>
+            <div className="mt-4 flex gap-3">
+              <button className="rounded bg-yellow-500 px-4 py-2 font-semibold text-black">
+                Edit
+              </button>
 
-      <div className="mt-12 max-w-4xl space-y-4">
-        <h2 className="text-2xl font-bold">
-          Saved Projects
-        </h2>
-
-        {projects.length === 0 ? (
-          <p className="text-gray-400">
-            No projects found.
-          </p>
-        ) : (
-          projects.map((project) => (
-            <div
-              key={project.id}
-              className="rounded-xl border border-white/10 bg-zinc-900 p-5"
-            >
-              <h3 className="text-xl font-bold">
-                {project.title}
-              </h3>
-
-              <p className="mt-2 text-gray-300">
-                {project.description}
-              </p>
-
-              <p className="mt-3 text-cyan-400">
-                {project.technologies}
-              </p>
-
-              <div className="mt-4 flex gap-3">
-                <button className="rounded bg-yellow-500 px-4 py-2 font-semibold text-black">
-                  Edit
-                </button>
-
-                <button
-                  onClick={() => deleteProject(project.id)}
-                  className="rounded bg-red-500 px-4 py-2 font-semibold text-white"
-                >
-                  Delete
-                </button>
-              </div>
+              <button
+                onClick={() => deleteProject(project.id)}
+                className="rounded bg-red-500 px-4 py-2 font-semibold text-white"
+              >
+                Delete
+              </button>
             </div>
-          ))
-        )}
-      </div>
-    </main>
-  );
-}
+          </div>
+        ))
+      )}
+    </div>
+  </main>
+);
