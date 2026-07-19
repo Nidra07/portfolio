@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 
 interface LoadingScreenProps {
   onComplete: () => void;
@@ -17,33 +17,32 @@ export default function LoadingScreen({
   const [phase, setPhase] = useState("Initializing");
 
   // Stars
-  const stars = useMemo(
-    () =>
-      Array.from({ length: 120 }, (_, i) => ({
-        id: i,
-        left: Math.random() * 100,
-        top: Math.random() * 100,
-        size: Math.random() * 2 + 1,
-        delay: Math.random() * 5,
-        duration: Math.random() * 4 + 3,
-      })),
-    []
+const [stars, setStars] = useState<any[]>([]);
+const [particles, setParticles] = useState<any[]>([]);
+useEffect(() => {
+  setStars(
+    Array.from({ length: 120 }, (_, i) => ({
+      id: i,
+      left: Math.random() * 100,
+      top: Math.random() * 100,
+      size: Math.random() * 2 + 1,
+      delay: Math.random() * 5,
+      duration: Math.random() * 4 + 3,
+    }))
   );
 
-  // Floating particles
-  const particles = useMemo(
-    () =>
-      Array.from({ length: 55 }, (_, i) => ({
-        id: i,
-        left: Math.random() * 100,
-        top: Math.random() * 100,
-        size: Math.random() * 5 + 2,
-        delay: Math.random() * 8,
-        duration: Math.random() * 10 + 8,
-        opacity: Math.random() * 0.8 + 0.2,
-      })),
-    []
+  setParticles(
+    Array.from({ length: 55 }, (_, i) => ({
+      id: i,
+      left: Math.random() * 100,
+      top: Math.random() * 100,
+      size: Math.random() * 5 + 2,
+      delay: Math.random() * 8,
+      duration: Math.random() * 10 + 8,
+      opacity: Math.random() * 0.8 + 0.2,
+    }))
   );
+}, []);
 
   // Typewriter
   useEffect(() => {
