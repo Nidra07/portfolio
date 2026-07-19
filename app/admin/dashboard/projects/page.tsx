@@ -13,6 +13,10 @@ export default function ProjectsPage() {
 
   const [projects, setProjects] = useState<any[]>([]);
 
+const [editingId, setEditingId] = useState<number | null>(null);
+const [image, setImage] = useState("");
+const [featured, setFeatured] = useState(false);
+
   useEffect(() => {
     loadProjects();
   }, []);
