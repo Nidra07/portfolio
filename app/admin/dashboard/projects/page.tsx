@@ -52,6 +52,24 @@ export default function ProjectsPage() {
     await loadProjects();
   }
 
+  async function deleteProject(id: number) {
+    const ok = confirm("Delete this project?");
+
+    if (!ok) return;
+
+    const { error } = await supabase
+      .from("projects")
+      .delete()
+      .eq("id", id);
+
+    if (error) {
+      alert(error.message);
+      return;
+    }
+
+    await loadProjects();
+  }
+
   return (
     <main className="min-h-screen bg-black text-white p-8">
       <h1 className="mb-8 text-3xl font-bold">
@@ -135,7 +153,10 @@ export default function ProjectsPage() {
                   Edit
                 </button>
 
-                <button className="rounded bg-red-500 px-4 py-2 font-semibold text-white">
+                <button
+                  onClick={() => deleteProject(project.id)}
+                  className="rounded bg-red-500 px-4 py-2 font-semibold text-white"
+                >
                   Delete
                 </button>
               </div>
