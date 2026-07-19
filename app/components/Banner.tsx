@@ -94,7 +94,7 @@ export default function Banner(): React.JSX.Element {
 
           <div className="flex justify-center lg:justify-end relative w-full lg:w-auto">
             <div
-              className={`reveal delay -2 relative top-10 transition-all duration-1000 ${
+              className={`reveal delay -1 relative top-10 transition-all duration-1000 ${
                 imageVisible
                   ? "translate-y-0 opacity-100 scale-100"
                   : "translate-y-10 opacity-0 scale-95"
