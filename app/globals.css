@@ -2050,3 +2050,65 @@ img{
   }
 
 }
+/* ==========================================================
+   FINAL POLISH
+========================================================== */
+
+/* Better scrolling */
+html{
+  scroll-behavior:smooth;
+}
+
+/* Better page rendering */
+body{
+  text-rendering:optimizeLegibility;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+
+/* Better focus ring */
+a:focus-visible,
+button:focus-visible{
+  outline:2px solid #a855f7;
+  outline-offset:4px;
+  border-radius:10px;
+}
+
+/* Universal hover transition */
+a,
+button{
+  transition:
+    transform .25s ease,
+    color .25s ease,
+    background-color .25s ease,
+    border-color .25s ease,
+    box-shadow .25s ease;
+}
+
+/* Slight lift */
+button:hover,
+a:hover{
+  transform:translateY(-2px);
+}
+
+/* Image optimization */
+img{
+  image-rendering:auto;
+  user-select:none;
+}
+
+/* Prevent accidental horizontal scroll */
+html,
+body{
+  overflow-x:hidden;
+}
+
+@media (prefers-reduced-motion: reduce){
+
+  *{
+    animation:none !important;
+    transition:none !important;
+    scroll-behavior:auto !important;
+  }
+
+}
