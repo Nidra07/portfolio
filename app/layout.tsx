@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Poppins } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import MouseGlow from "./components/MouseGlow";
+import ScrollReveal from "./components/ScrollReveal";
 
 import "./globals.css";
 import ClientLayout from "./components/ClientLayout";
